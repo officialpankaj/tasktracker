@@ -4,10 +4,10 @@ import crossIcon from "../assets/cross-icon.svg";
 
 const TaskCard = () => {
   return (
-    <div className="drop-shadow-card flex cursor-pointer mt-8 bg-white rounded-[25px] px-6 pt-3 pb-7">
+    <div className="drop-shadow-card flex cursor-pointer mt-8 bg-white rounded-[25px] px-6 pt-6 pb-7">
       <div className="w-3/5">
-        <h2 className="text-heading font-medium py-3">Add Animations to the Website</h2>
-        <h3 className="font-medium mb-1">History</h3>
+        <h2 className="text-heading font-medium py-1.5">Add Animations to the Website</h2>
+        <h3 className="font-medium my-1">History</h3>
         <p className="text-[15px] mb-1">Started the timer at 3/5/2022 12:20:34 (Active)</p>
         <p className="text-[15px]">Started the timer at 3/5/2022 10:30:34 & Stopped at 3/5/2022 11:20:23</p>
       </div>

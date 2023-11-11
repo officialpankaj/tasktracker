@@ -8,7 +8,7 @@ function Header() {
         <h3 className="text-[24px] font-bold">TIME TRACKER</h3>
       </div>
       <div>
-        Total Time Spend <span className="ml-3 font-semibold">1 hour 35 mins</span>
+        Total Time Spend <span className="ml-3 font-semibold">1 hr 35 mins</span>
       </div>
     </div>
   );
