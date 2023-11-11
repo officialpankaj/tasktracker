@@ -17,8 +17,10 @@ export default {
         "white-500": "rgba(255, 255, 255, 0.50)",
         "white-400": "rgba(255, 255, 255, 0.40)",
         "white-300": "rgba(255, 255, 255, 0.30)",
+        "white-200": "rgba(255, 255, 255, 0.20)",
+        "white-100": "rgba(255, 255, 255, 0.10)",
       },
-      boxShadow: {
+      dropShadow: {
         "card": "5px 5px 8px rgba(0, 0, 0, 0.1)",
       },
       screens: {
