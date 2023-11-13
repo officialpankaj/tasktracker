@@ -1,44 +1,50 @@
 import Header from "./components/Header";
 import TaskList from "./components/TaskList";
 import plusIcon from "./assets/plus-icon.svg";
-import crossIcon from "./assets/cross-icon.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setTaskList } from "./store/reducers/taskSlice";
+import AddTaskModal from "./components/AddTaskModal";
+import MessageModal from "./components/MessageModal";
 
-function App() {
+const App = () => {
   const [modalActive, setModalActive] = useState(false);
+  const dispatch = useDispatch();
+  const { showModal } = useSelector((state) => state.task);
+
+  useEffect(() => {
+    let tasklist = localStorage.getItem("taskList");
+    if (tasklist) {
+      dispatch(setTaskList(JSON.parse(tasklist)));
+    }
+  }, []);
+
   return (
-    <div className="relative bg-secondary h-screen">
+    <div className="relative h-screen flex flex-col">
       <Header />
-      <TaskList />
-      <button
-        className="w-[60px] h-[60px] bg-primary rounded-full flex items-center justify-center absolute bottom-12 right-16 hover:drop-shadow-lg duration-500"
-        onClick={() => {
-          setModalActive(true);
-        }}
-      >
-        <img src={plusIcon} alt="add-icon" className="" />
-      </button>
-      {modalActive && (
-        <div className="absolute top-0 w-screen h-screen bg-black/30 flex justify-center items-center">
-          <form className="w-3/6 relative bg-white rounded-[25px] flex flex-col px-12 py-12">
-            <p>Enter the Task Name</p>
-            <input className="h-[40px] border mb-7 mt-1 rounded-md px-4" name="taskname" />
-            <button type="submit" className="bg-primary text-white flex items-center justify-center px-3 w-32 rounded-full h-[40px]">
-              Save
-            </button>
-            <img
-              src={crossIcon}
-              alt="cross-icon"
-              className="w-[10px] absolute top-5 right-6 cursor-pointer"
-              onClick={() => {
-                setModalActive(false);
-              }}
-            />
-          </form>
-        </div>
-      )}
+      <div className="flex flex-col bg-secondary flex-1 overflow-y-auto pt-8">
+        <TaskList />
+        <button
+          className="w-[60px] h-[60px] bg-primary rounded-full flex items-center justify-center absolute bottom-6 md:bottom-12 right-6 md:right-16 hover:drop-shadow-lg duration-500"
+          onClick={() => {
+            setModalActive(true);
+          }}
+        >
+          <img src={plusIcon} alt="add-icon" className="" />
+        </button>
+        {modalActive && (
+          <div className="absolute top-0 w-screen h-screen bg-black/30 flex justify-center items-center">
+            <AddTaskModal setModalActive={setModalActive} />
+          </div>
+        )}
+        {showModal && (
+          <div className="absolute top-0 w-screen h-screen bg-black/30 flex justify-center items-center">
+            <MessageModal />
+          </div>
+        )}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
